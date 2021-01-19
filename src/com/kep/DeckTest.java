@@ -62,6 +62,7 @@ public class DeckTest {
     @Test
     public void determineWinner(){
         Deck deck = new Deck();
+        deck.shuffle();
 
         Stack<Card> cards = deck.getCards();
         System.out.println(cards);
@@ -80,17 +81,6 @@ public class DeckTest {
         System.out.println("playA won? " + deckA.win(deckB));
 
     }
-    @Test
-    public void shuffle(){
-        List<Integer> numbers = Arrays.asList(1, 2, 300, 4, 500, 6, 7);
-        System.out.println("list before shuffling : " + numbers); // shuffling the list
-        Collections.shuffle(numbers);
-        System.out.println("list after shuffling : " + numbers);
-        // You can even provide your own Random instance
-        // for randomizing data
-        Collections.shuffle(numbers, new Random(System.nanoTime()));
-        System.out.println("list after shuffling again : " + numbers);
 
-    }
 }
 
