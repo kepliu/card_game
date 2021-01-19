@@ -2,17 +2,15 @@ package com.kep;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
 public class DeckTest {
     @Test
     public void testNewDeckOf52Cards() {
-        Deck deck = new Deck(52);
+        Deck deck = new Deck();
+        deck.shuffle();
         Stack<Card> cards = deck.getCards();
         //System.out.println(cards);
         List<Card> spades = new ArrayList<>();
@@ -23,6 +21,7 @@ public class DeckTest {
         while (!cards.empty()) {
 
             Card c = cards.pop();
+            //System.out.println(c);
             switch (c.getSuitName()) {
                 case "Spade":
                     spades.add(c);
@@ -48,16 +47,21 @@ public class DeckTest {
     }
     @Test
     public void sort(){
-        Deck deck = new Deck(10);
+        Deck deck = new Deck();
+        deck.shuffle();
+        System.out.println(deck);
         Stack<Card> cards = deck.getCards();
         List<Card> lCards = new ArrayList<>();
         lCards.addAll(cards);
+        System.out.println("Before sorting ");
+        System.out.println(lCards);
         Collections.sort(lCards);
+        System.out.println("After sorting ");
         System.out.println(lCards);
     }
     @Test
     public void determineWinner(){
-        Deck deck = new Deck(6);
+        Deck deck = new Deck();
 
         Stack<Card> cards = deck.getCards();
         System.out.println(cards);
@@ -74,6 +78,18 @@ public class DeckTest {
         Deck deckA = new Deck(cards_playerA);
         Deck deckB = new Deck(cards_playerB);
         System.out.println("playA won? " + deckA.win(deckB));
+
+    }
+    @Test
+    public void shuffle(){
+        List<Integer> numbers = Arrays.asList(1, 2, 300, 4, 500, 6, 7);
+        System.out.println("list before shuffling : " + numbers); // shuffling the list
+        Collections.shuffle(numbers);
+        System.out.println("list after shuffling : " + numbers);
+        // You can even provide your own Random instance
+        // for randomizing data
+        Collections.shuffle(numbers, new Random(System.nanoTime()));
+        System.out.println("list after shuffling again : " + numbers);
 
     }
 }

@@ -5,26 +5,45 @@ import java.util.*;
 import static org.junit.Assert.assertEquals;
 
 public class Deck {
-    Stack<Card> cards;
+
+
+
+    private Stack<Card> cards;
+    private  Stack<Card> shuffleNumbers(List<Integer> numbers){
+       // System.out.println(numbers);
+        Collections.shuffle(numbers);
+       // System.out.println("Collections.shuffle(numbers)");
+       // System.out.println(numbers);
+        Stack<Card> cards = new Stack<>();
+        for (int num: numbers){
+            int suit = num / 13;
+            int rank = num % 13;
+            cards.push(new Card(suit, rank));
+        }
+        return cards;
+    }
+    public  void shuffle(){
+
+        List<Integer> convertedNumbers = new ArrayList<>();
+        for (Card c : cards){
+            convertedNumbers.add(c.getSuit()*13 + c.getRank());
+        }
+
+        cards = shuffleNumbers(convertedNumbers);
+
+    }
 
     // This constructor generates shuffled cards
-    public Deck(int numberOfCards) {
+    public Deck() {
         cards = new Stack<>();
-        Random rand = new Random();
-        List<Integer> rNumbers = new ArrayList<>();
-        int count = 0;
-        do {  // get random order of 0 to 51 into the list
-            int r = rand.nextInt(52);
-            if (!rNumbers.contains(r)) {
-                rNumbers.add(r);
-            }
+        List<Integer> rNumbers = Arrays.asList(0, 1, 2, 3,4,5,6,7,8,9,10,11,12,
+                                        13,14,15,16,17,18,19,20,21,22,23,24, 25,
+                                        26,27,28,29,30,31,32,33,34,35,36,37,38,
+                                        39,40,41,42,43,44,45,46,47,48,49,50,51);
 
-        }while (rNumbers.size() != 52);
-
-        //convert numbers to cards
-        for (int i=0; i < numberOfCards; i++) {
-            int suit = rNumbers.get(i)/ 13;
-            int rank = rNumbers.get(i) % 13;
+        for (int i : rNumbers) {
+            int suit = i / 13;
+            int rank = i % 13;
             cards.push(new Card(suit, rank));
         }
     }
@@ -32,6 +51,7 @@ public class Deck {
     public Deck(Stack<Card> cards) {
         this.cards = cards;
     }
+
 
 
     public Stack<Card> getCards() {
