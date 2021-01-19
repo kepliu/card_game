@@ -73,7 +73,7 @@ public class DeckTest {
         System.out.println("cards_playerB:" + cards_playerB);
         Deck deckA = new Deck(cards_playerA);
         Deck deckB = new Deck(cards_playerB);
-        System.out.println("playA won? " + deckA.thisWin(deckB));
+        System.out.println("playA won? " + deckA.win(deckB));
 
     }
 }

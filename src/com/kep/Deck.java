@@ -38,7 +38,7 @@ public class Deck {
         return cards;
     }
 
-    public boolean thisWin(Deck that){
+    public boolean win(Deck that){
         int thisScore = 0;
         int thatScore = 0;
         while (!cards.empty()){
